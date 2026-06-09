@@ -1,6 +1,6 @@
 ### 00. SETUP #### 
 suppressPackageStartupMessages({
-  library(tidyverse); library(ggplot2); library(glmmTMB); library(purrr); library(broom.mixed)
+  library(tidyverse); library(ggplot2); library(glmmTMB); library(purrr); library(broom.mixed); library(janitor)
 })
 
 # Enter the date for this analysis
@@ -101,12 +101,26 @@ model_export <- function(model, model_name, output_dir, sigfigs = 3) {
   invisible(fx_out)
 }
 
-# only using the three grazer taxa 
+### lookup tables #### 
+
+# abundance data: coarse grazer groups
 functional_taxa <- tibble::tribble(
-  ~Species,            ~Trophic_Group, ~Genus,                ~Species_epithet, ~sci_name,
-  "Parrotfish",        "Grazer",          "Scarus",              "spp.",           "Scarus spp.",
-  "Rabbitfish",        "Grazer",          "Siganus",             "spp.",           "Siganus spp.",
-  "Butterflyfish",     "Grazer",          "Chaetodon",           "spp.",          "Chaetodon spp."
+  ~family,          ~trophic_group, ~taxon_family,        ~genus,       ~species_epithet, ~sci_name,
+  "Parrotfish",     "Grazer",       "Labridae: Scarinae", "Scarus",     "spp.",           "Scarus spp.",
+  "Rabbitfish",     "Grazer",       "Siganidae",          "Siganus",    "spp.",           "Siganus spp.",
+  "Butterflyfish",  "Grazer",       "Chaetodontidae",     "Chaetodon",  "spp.",           "Chaetodon spp."
+)
+
+# fish bites data: species-level observations
+fish_bite_species_lookup <- tibble::tribble(
+  ~family,          ~species,       ~trophic_group, ~taxon_family,        ~genus,       ~species_epithet, ~sci_name,                    ~taxon_notes,
+  "Butterflyfish",  "8-banded",     "Grazer",       "Chaetodontidae",     "Chaetodon",  "octofasciatus",  "Chaetodon octofasciatus",  "",
+  "Butterflyfish",  "Weibel",       "Grazer",       "Chaetodontidae",     "Chaetodon",  "wiebeli",        "Chaetodon wiebeli",        "",
+  "Parrotfish",     "Blue-barred",  "Grazer",       "Labridae: Scarinae", "Scarus",     "ghobban",        "Scarus ghobban",           "",
+  "Parrotfish",     "Purple",       "Grazer",       "Labridae: Scarinae", "Scarus",     "globiceps",      "Scarus globiceps",         "check ID",
+  "Parrotfish",     "Surf",         "Grazer",       "Labridae: Scarinae", "Scarus",     "rivulatus",      "Scarus rivulatus",         "check ID",
+  "Rabbitfish",     "Virgate",      "Grazer",       "Siganidae",          "Siganus",    "virgatus",       "Siganus virgatus",         "",
+  "Rabbitfish",     "Yellow",       "Grazer",       "Siganidae",          "Siganus",    "guttatus",       "Siganus guttatus",         "check ID"
 )
 
 
