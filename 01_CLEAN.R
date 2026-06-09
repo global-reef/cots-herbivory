@@ -231,3 +231,19 @@ write_csv(substrate, file.path(data_clean_dir, "substrate_point_clean.csv"))
 write_csv(substrate_transect, file.path(data_clean_dir, "substrate_transect_cover_clean.csv"))
 write_csv(substrate_wide, file.path(data_clean_dir, "substrate_transect_cover_wide_clean.csv"))
 
+
+
+
+### ok so finishing for the day
+# we now have cleaned 
+str(fish_bites)
+str(fish_abund)
+
+str(cots_indiv)
+str(cots_survey)
+
+str(substrate)
+str(substrate_transect)
+str(substrate_wide)
+
+
