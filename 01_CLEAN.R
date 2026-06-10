@@ -244,8 +244,6 @@ write_csv(substrate_wide, file.path(data_clean_dir, "substrate_transect_cover_wi
 
 
 
-
-### ok so finishing for the day
 # we now have cleaned 
 str(fish_bites)
 str(fish_abund)
