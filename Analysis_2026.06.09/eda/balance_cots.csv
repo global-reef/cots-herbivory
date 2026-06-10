@@ -1,0 +1,7 @@
+site,site_code,site_type,n_surveys,n_dates,total_cots,mean_density_ha,max_density_ha,pct_zero,first_date,last_date
+Aow Leuk,AL,Control,20,16,28,7,15,35,2025-02-28,2026-05-12
+Green Rock Wall,GR,High Density,45,40,319,35.44444444444444,70,0,2020-05-19,2026-05-22
+Red Rock Wall,RR,High Density,32,31,187,29.21875,55,0,2023-04-01,2026-05-22
+Shark Island,SI,Control,20,15,19,4.75,20,55.00000000000001,2025-02-05,2026-05-28
+Tanote Bay,TB,Control,8,7,5,3.125,5,37.5,2025-06-24,2026-05-12
+Twins Wall,TW,High Density,22,20,118,26.81818181818182,75,4.545454545454546,2024-09-11,2026-05-11

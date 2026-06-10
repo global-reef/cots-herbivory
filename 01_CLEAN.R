@@ -78,6 +78,15 @@ fish_bites %>%
   filter(is.na(sci_name)) %>%
   distinct(family, species)
 
+# Fix likely raw-entry date typo
+fish_bites <- fish_bites %>%
+  mutate(
+    date = case_when(
+      site_code == "AL" & date == as.Date("2029-09-29") ~ as.Date("2025-09-29"),
+      TRUE ~ date
+    )
+  )
+
 write.csv(fish_bites, file.path(data_clean_dir, "fish_bites_clean.csv"), row.names = FALSE)
 
 
@@ -137,7 +146,8 @@ cots_survey <- cots_indiv %>%
             mean_depth_m = safe_mean(depth_m),
             .groups = "drop") %>%
   mutate(cots_density_ha = cots_count / area_ha) %>%
-  arrange(site_code, date, survey_id)
+  arrange(site_code, date, survey_id)  %>% 
+  mutate(across(c(site_code, site, site_type, survey_id, researcher), as.factor))
 
 str(cots_indiv)
 str(cots_survey)
@@ -152,6 +162,7 @@ cots_survey %>%
     .groups = "drop"
   )
 
+
 write.csv(cots_indiv, file.path(data_clean_dir, "cots_indiv_clean.csv"), row.names = FALSE)
 write.csv(cots_survey, file.path(data_clean_dir, "cots_survey_clean.csv"), row.names = FALSE)
 
@@ -159,7 +170,7 @@ write.csv(cots_survey, file.path(data_clean_dir, "cots_survey_clean.csv"), row.n
 #### 05. CLEAN SUBSTRATE ####
 #### 05. CLEAN SUBSTRATE ####
 
-valid_substrate <- c("HC", "SC", "TUR", "MAC", "SP", "OB", "AB", "AN", "O", "UKN")
+valid_substrate <- c("HC", "SC", "TUR", "MAC", "SP", "OB", "AB", "AN", "UKN")
 valid_gf <- c("MA", "SMA", "CAE", "CB", "TB", "ARB", "DI", "SOL", "FOL", "LM", "ENC")
 
 substrate <- cpce_raw %>%
@@ -176,7 +187,7 @@ substrate <- cpce_raw %>%
       substrate %in% c("UK", "??", "@@@@", "0", "NUMBER NOT IN IMAGE", "UKN/OB") ~ "UKN",
       substrate %in% c("TUIR", "TURB", "TURF", "TURTUR", "ATUR", "UR") ~ "TUR",
       substrate %in% c("A B", "ABA", "RAB", "SAB", "HAB") ~ "AB",
-      substrate %in% c("OB?", "OB (SP)") ~ "OB",
+      substrate %in% c("OB?", "OB (SP)", "O") ~ "OB",
       substrate %in% c("HHC", "HCC", "HCH", "HCMA", "HCENC", "HCTUR") ~ "HC",
       TRUE ~ NA_character_
     ),
@@ -245,5 +256,16 @@ str(cots_survey)
 str(substrate)
 str(substrate_transect)
 str(substrate_wide)
+
+
+
+
+# fish_bites          # 336 feeding observations
+# fish_abund          # 327 observations (only parrot, rabbit and butterfly), 8826 fish counted 
+# cots_indiv          # 698 indivudal cots records
+# cots_survey         # 147 surveys
+# substrate           # 50,239 CPCE points
+# substrate_transect  # 255 substrate-by-transect quadrats
+
 
 

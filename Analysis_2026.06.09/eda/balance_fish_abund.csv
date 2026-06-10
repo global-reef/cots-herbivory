@@ -1,0 +1,7 @@
+site,site_code,n_records,n_surveys,n_dates,n_researchers,total_fish,mean_density_ha,max_density_ha,first_date,last_date
+Aow Leuk,AL,81,8,9,21,1925,237.6543209876543,1720,2025-04-16,2026-06-01
+Green Rock Wall,GR,42,7,7,14,1167,277.85714285714283,530,2025-04-01,2026-06-02
+Red Rock Wall,RR,24,4,4,7,633,263.75,460,2025-10-01,2026-04-07
+Shark Island,SI,60,9,9,15,2187,364.5,850,2025-02-05,2026-06-04
+Tanote Bay,TB,57,8,8,16,1294,227.01754385964912,420,2025-02-06,2026-04-07
+Twins Wall,TW,63,8,8,16,1620,257.14285714285717,770,2025-02-04,2026-04-18

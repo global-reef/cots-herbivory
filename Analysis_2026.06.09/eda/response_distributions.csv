@@ -1,0 +1,4 @@
+dataset,response,n,min,mean,median,max,zeros,pct_zero
+fish_bites,bites_total,336,0,47.809523809523796,37.5,178,20,5.952380952380952
+fish_abund,fish_count,327,2,26.990825688073397,24,172,0,0
+cots_survey,cots_count,147,0,4.598639455782313,4,15,22,14.965986394557824

@@ -90,10 +90,10 @@ clean_cpce_sheet <- function(file, sheet_name) {
     arrange(Transect, Quadrat, `CPCE Point`)
 }
 
-cpce_excel_file <- file.path(data_raw_dir, paste0(analysis_date, "_CPCE.xlsx"))
+cpce_excel_file <- file.path(data_raw_dir, paste0(analysis_date, "_CPCE2.xlsx"))
 
-cpce_long <- excel_sheets(file) %>%
-  map_dfr(~ clean_cpce_sheet(file, .x))
+cpce_long <- excel_sheets(cpce_excel_file) %>%
+  map_dfr(~ clean_cpce_sheet(cpce_excel_file, .x))
 
 write_csv(cpce_long, file.path(data_raw_dir, paste0(analysis_date, "_cpce_long.csv")))
 str(cpce_long)

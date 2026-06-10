@@ -1,0 +1,9 @@
+dataset,variable,n_missing,pct_missing
+fish_abund,current,12,3.669724770642202
+fish_abund,local_boats,9,2.7522935779816518
+cots_survey,mean_size_cm,22,14.965986394557824
+cots_survey,mean_depth_m,22,14.965986394557824
+cots_survey,duration_min,8,5.442176870748299
+cots_survey,vis_m,6,4.081632653061225
+cots_survey,avg_depth_m,2,1.3605442176870748
+cots_survey,time,1,0.6802721088435374

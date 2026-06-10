@@ -1,0 +1,7 @@
+site,site_code,site_type,n_surveys,mean_cots_density_ha,sd_cots_density_ha,max_cots_density_ha,pct_zero
+Aow Leuk,AL,Control,20,7,6.155870112510924,15,35
+Green Rock Wall,GR,High Density,45,35.44444444444444,16.265629624170934,70,0
+Red Rock Wall,RR,High Density,32,29.21875,11.15212803358262,55,0
+Shark Island,SI,Control,20,4.75,6.381511122808321,20,55.00000000000001
+Tanote Bay,TB,Control,8,3.125,2.5877458475338284,5,37.5
+Twins Wall,TW,High Density,22,26.81818181818182,20.032441221645986,75,4.545454545454546

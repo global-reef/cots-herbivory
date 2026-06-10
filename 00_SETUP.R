@@ -54,9 +54,23 @@ fg_cols <- c(
 ) 
 
 reef_cols <- c(
-  "High Density" = "#253494",  # deep ocean blue
-  "Low Density"  = "#66c2a4"   # seafoam
+  "High Density" = "#FF9683",  # orange siesta
+  "Low Density"  = "#95B971" # Atlantis Green
 )
+
+
+
+substrate_cols_pal <- c(
+  "HC"  = "#ff8c94",  # coral pink
+  "SC"  = "#E2B5F8",  # soft coral / pale peach
+  "AB"  = "#d8c39f",  # abiotic / sand
+  "TUR" = "#95B971",  # turf / seafoam green
+  "MAC" = "#238b45",  # macroalgae / deep green
+  "SP"  = "#6372EB",  # sponge / purple
+  "OB"  = "#8c7a6b",  # other biotic / reef brown
+  "UKN" = "#bdbdbd"   # unknown / grey
+)
+
 
 
 ### helpers ####
