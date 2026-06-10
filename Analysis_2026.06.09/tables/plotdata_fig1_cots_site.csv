@@ -1,0 +1,7 @@
+site_code,site,site_type,cots_mean_ha,cots_median_ha,cots_max_ha,n_cots_surveys,cots_15_mean,cots_15_max
+AL,Aow Leuk,Control,7,7.5,15,20,Below_15,Above_15
+GR,Green Rock Wall,High Density,35.44444444444444,35,70,45,Above_15,Above_15
+RR,Red Rock Wall,High Density,29.21875,30,55,32,Above_15,Above_15
+SI,Shark Island,Control,4.75,0,20,20,Below_15,Above_15
+TB,Tanote Bay,Control,3.125,5,5,8,Below_15,Below_15
+TW,Twins Wall,High Density,26.81818181818182,20,75,22,Above_15,Above_15

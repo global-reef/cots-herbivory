@@ -1,0 +1,7 @@
+Site code,Site,Site type,Mean CoTS density ha-1,Median CoTS density ha-1,Max CoTS density ha-1,Mean 15 CoTS category,CoTS surveys,Hard coral (%),Macroalgae (%),Turf algae (%),Abiotic (%),Other biotic (%),Algal cover (%),Benthic state,Substrate transects
+TB,Tanote Bay,Control,3.12,5,5,Below_15,8,51.2,1.87,17.59,24.78,4.04,19.46,-31.74,7
+SI,Shark Island,Control,4.75,0,20,Below_15,20,63.62,1.6,19.07,11.9,3.29,20.67,-42.95,7
+AL,Aow Leuk,Control,7,7.5,15,Below_15,20,33.49,0.96,33.94,25.7,4.79,34.9,1.42,9
+TW,Twins Wall,High Density,26.82,20,75,Above_15,22,37.72,1.22,37.05,18.92,4.15,38.27,0.55,5
+RR,Red Rock Wall,High Density,29.22,30,55,Above_15,32,48.87,3.33,32.42,10.51,4.39,35.75,-13.12,6
+GR,Green Rock Wall,High Density,35.44,35,70,Above_15,45,37.59,3.16,27.59,25.46,5.79,30.75,-6.84,8

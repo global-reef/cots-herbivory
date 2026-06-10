@@ -1,0 +1,15 @@
+model,uniformity_p,dispersion_p,outlier_p,zero_inflation_p
+m_benthos_hc,0.866,0.648,1,1
+m_benthos_mac,0.312,0.878,0.081,0
+m_benthos_tur,0.889,0.824,1,1
+m_fish_abund,0.14,0.264,0.34,1
+m_feeding_pref,0.554,0.222,0.278,0.218
+m_benthos_hc_15,0.608,0.642,1,1
+m_benthos_mac_15,0.254,0.878,0.081,0
+m_benthos_tur_15,0.768,0.814,1,1
+m_fish_abund_15,0.136,0.28,0.36,1
+m_benthos_hc_no_al,0.757,0.768,1,1
+m_benthos_mac_no_al,0.549,0.838,0.064,1
+m_benthos_tur_no_al,0.999,0.838,1,1
+m_fish_abund_no_al,0.974,0.484,0.82,1
+m_feeding_pref_no_al,0.574,0.318,0.688,0.398

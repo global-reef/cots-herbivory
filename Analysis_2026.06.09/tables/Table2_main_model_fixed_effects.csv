@@ -1,0 +1,24 @@
+Model,Response,Term,Estimate,SE,CI low,CI high,Statistic,p-value
+Benthos: hard coral,HC,(Intercept),45.554,3.874,37.962,53.147,11.76,<0.001
+Benthos: hard coral,HC,cots_mean_ha_sc,-4.627,3.956,-12.382,3.127,-1.17,0.242
+Benthos: macroalgae,MAC,(Intercept),2.009,0.26,1.5,2.518,7.737,<0.001
+Benthos: macroalgae,MAC,cots_mean_ha_sc,0.673,0.263,0.158,1.188,2.56,0.010
+Benthos: turf algae,TUR,(Intercept),27.646,2.589,22.572,32.72,10.679,<0.001
+Benthos: turf algae,TUR,cots_mean_ha_sc,3.859,2.645,-1.325,9.044,1.459,0.145
+Fish abundance,fish_count,(Intercept),5.388,0.085,5.221,5.555,63.277,<0.001
+Fish abundance,fish_count,familyRabbitfish,0.196,0.067,0.064,0.328,2.916,0.004
+Fish abundance,fish_count,familyButterflyfish,0.183,0.068,0.05,0.316,2.704,0.007
+Fish abundance,fish_count,cots_mean_ha_sc,0.268,0.076,0.118,0.417,3.517,<0.001
+Fish abundance,fish_count,familyRabbitfish:cots_mean_ha_sc,-0.309,0.067,-0.44,-0.178,-4.633,<0.001
+Fish abundance,fish_count,familyButterflyfish:cots_mean_ha_sc,-0.296,0.067,-0.427,-0.165,-4.42,<0.001
+Feeding preference,"cbind(bites_sub, bites_other)",(Intercept),0.939,0.106,0.732,1.147,8.887,<0.001
+Feeding preference,"cbind(bites_sub, bites_other)",substrateMAC,-2.993,0.228,-3.44,-2.545,-13.105,<0.001
+Feeding preference,"cbind(bites_sub, bites_other)",substrateHC,-3.796,0.208,-4.203,-3.39,-18.295,<0.001
+Feeding preference,"cbind(bites_sub, bites_other)",familyRabbitfish,0.415,0.151,0.118,0.712,2.739,0.006
+Feeding preference,"cbind(bites_sub, bites_other)",familyButterflyfish,-1.281,0.154,-1.583,-0.98,-8.33,<0.001
+Feeding preference,"cbind(bites_sub, bites_other)",avail_pct_sc,0.323,0.106,0.115,0.531,3.046,0.002
+Feeding preference,"cbind(bites_sub, bites_other)",cots_mean_ha_sc,-0.062,0.043,-0.146,0.022,-1.451,0.147
+Feeding preference,"cbind(bites_sub, bites_other)",substrateMAC:familyRabbitfish,-0.241,0.245,-0.72,0.238,-0.986,0.324
+Feeding preference,"cbind(bites_sub, bites_other)",substrateHC:familyRabbitfish,-0.473,0.253,-0.969,0.022,-1.873,0.061
+Feeding preference,"cbind(bites_sub, bites_other)",substrateMAC:familyButterflyfish,0.533,0.296,-0.047,1.114,1.8,0.072
+Feeding preference,"cbind(bites_sub, bites_other)",substrateHC:familyButterflyfish,3.78,0.243,3.303,4.257,15.538,<0.001

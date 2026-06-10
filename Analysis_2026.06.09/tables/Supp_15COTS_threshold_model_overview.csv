@@ -1,0 +1,5 @@
+model,question,response,family,n_obs,AIC,significant_fixed_effects
+m_benthos_hc_15,Hard coral cover differs above vs below 15 CoTS ha-1,HC,gaussian,42,345.60394643697816,none
+m_benthos_mac_15,Macroalgae cover differs above vs below 15 CoTS ha-1,MAC,gaussian,42,171.53146698835195,cots_15_meanAbove_15 (p = 0.016)
+m_benthos_tur_15,Turf algae cover differs above vs below 15 CoTS ha-1,TUR,gaussian,42,344.9227924984601,none
+m_fish_abund_15,Fish abundance differs by family and 15 CoTS ha-1 threshold,fish_count,negative binomial,327,2598.325143030961,familyRabbitfish (p = <0.001); familyButterflyfish (p = <0.001); cots_15_meanAbove_15 (p = 0.002); familyRabbitfish:cots_15_meanAbove_15 (p = <0.001); familyButterflyfish:cots_15_meanAbove_15 (p = <0.001)
