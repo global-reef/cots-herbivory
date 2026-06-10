@@ -55,7 +55,7 @@ fg_cols <- c(
 
 reef_cols <- c(
   "High Density" = "#FF9683",  # orange siesta
-  "Low Density"  = "#95B971" # Atlantis Green
+  "Control"  = "#95B971" # Atlantis Green
 )
 
 
