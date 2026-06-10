@@ -1,138 +1,96 @@
-### quick n dirty explorations ####
+#### Feeding preference interaction candidates ####
 
-site_substrate <- substrate_transect %>%
-  group_by(site_code, site, substrate) %>%
-  summarise(
-    mean_pct = mean(pct, na.rm = TRUE),
-    sd_pct = sd(pct, na.rm = TRUE),
-    n_transects = n(),
-    .groups = "drop"
-  )
+m_feeding_pref_main <- m_feeding_pref
 
-ggplot(site_substrate, aes(x = site, y = mean_pct, fill = substrate)) +
-  geom_col() +
-  labs(x = NULL, y = "Mean cover (%)", fill = "Substrate") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+m_feeding_pref_cots_sub <- glmmTMB(
+  cbind(bites_sub, bites_other) ~ substrate * family + substrate * cots_mean_ha_sc +
+    avail_pct_sc + (1 | obs_id),
+  family = betabinomial(link = "logit"),
+  data = feeding_pref_mod
+)
 
-ggplot(substrate_transect, aes(x = site, y = pct, fill = site)) +
-  geom_boxplot(outlier.alpha = 0.4) +
-  facet_wrap(~ substrate, scales = "free_y") +
-  labs(x = NULL, y = "Cover per transect (%)") +
-  theme_minimal() +
-  theme(
-    legend.position = "none",
-    axis.text.x = element_text(angle = 45, hjust = 1)
-  )
+m_feeding_pref_cots_family <- glmmTMB(
+  cbind(bites_sub, bites_other) ~ substrate * family + family * cots_mean_ha_sc +
+    avail_pct_sc + (1 | obs_id),
+  family = betabinomial(link = "logit"),
+  data = feeding_pref_mod
+)
+
+m_feeding_pref_cots_sub_family <- glmmTMB(
+  cbind(bites_sub, bites_other) ~ substrate * family + substrate * cots_mean_ha_sc +
+    family * cots_mean_ha_sc + avail_pct_sc + (1 | obs_id),
+  family = betabinomial(link = "logit"),
+  data = feeding_pref_mod
+)
+
+feeding_pref_interaction_models <- list(
+  m_feeding_pref_main = m_feeding_pref_main,
+  m_feeding_pref_cots_sub = m_feeding_pref_cots_sub,
+  m_feeding_pref_cots_family = m_feeding_pref_cots_family,
+  m_feeding_pref_cots_sub_family = m_feeding_pref_cots_sub_family
+)
+
+purrr::iwalk(feeding_pref_interaction_models, ~ {
+  cat("\n==============================\n")
+  cat(.y, "\n")
+  cat("==============================\n")
+  print(summary(.x))
+})
+
+feeding_pref_interaction_compare <- tibble(
+  model = names(feeding_pref_interaction_models),
+  n_obs = purrr::map_int(feeding_pref_interaction_models, nobs),
+  AIC = purrr::map_dbl(feeding_pref_interaction_models, AIC),
+  significant_fixed_effects = purrr::map_chr(feeding_pref_interaction_models, sig_effects)
+) %>%
+  arrange(AIC)
+
+feeding_pref_interaction_compare
+write_csv(
+  feeding_pref_interaction_compare,
+  file.path(stats_dir, "feeding_pref_interaction_model_compare.csv")
+)
+
+feeding_pref_interaction_dharma <- purrr::imap_dfr(
+  feeding_pref_interaction_models,
+  run_dharma_tests
+)
+
+feeding_pref_interaction_dharma
+write_csv(
+  feeding_pref_interaction_dharma,
+  file.path(stats_dir, "feeding_pref_interaction_dharma.csv")
+)
 
 
-key_substrates <- c("HC", "TUR", "AB", "MAC", "OB")
 
-substrate_transect %>%
-  filter(substrate %in% key_substrates) %>%
-  ggplot(aes(x = site, y = pct, fill = site)) +
-  geom_boxplot(outlier.alpha = 0.4) +
-  facet_wrap(~ substrate, scales = "free_y") +
-  labs(x = NULL, y = "Cover per transect (%)") +
-  theme_minimal() +
-  theme(
-    legend.position = "none",
-    axis.text.x = element_text(angle = 45, hjust = 1)
-  )
-# AL is bucking the trend so we may want to do a senstivity analysis, removing AL to see if the trends still hold / how much variation that's accounting for 
-# but actually, it may not be COTs thats driving the changes, there are just weird reefs 
+#### RELEVEL FEEDING PREF DATA BEFORE INTERACTION MODELS ####
 
-
-substrate_transect %>%
-  filter(substrate == "HC") %>%
-  ggplot(aes(x = site, y = pct)) +
-  geom_boxplot(outlier.alpha = 0.4) +
-  geom_jitter(width = 0.15, alpha = 0.5) +
-  labs(x = NULL, y = "Hard coral cover per transect (%)") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
-
-
-site_substrate %>%
-  arrange(site_code, desc(mean_pct))
-
-
-### compare first and last substrate - is there a substantial change ### 
-substrate_first_last <- substrate_wide %>%
+feeding_pref_mod <- feeding_pref_mod %>%
   mutate(
-    transect_num = readr::parse_number(as.character(transect))
-  ) %>%
-  group_by(site_code, site) %>%
-  filter(transect_num %in% c(min(transect_num), max(transect_num))) %>%
-  mutate(period = if_else(transect_num == min(transect_num), "First", "Last")) %>%
-  ungroup()
-substrate_first_last_long <- substrate_first_last %>%
-  pivot_longer(
-    cols = where(is.numeric),
-    names_to = "substrate",
-    values_to = "pct"
-  ) %>%
-  filter(substrate != "transect_num")
-
-ggplot(substrate_first_last_long, aes(x = period, y = pct, fill = substrate)) +
-  geom_col() +
-  facet_wrap(~ site) +
-  labs(x = NULL, y = "Substrate cover (%)", fill = "Substrate") +
-  theme_minimal()
-
-substrate_first_last_diff <- substrate_first_last_long %>%
-  select(site_code, site, period, substrate, pct) %>%
-  pivot_wider(names_from = period, values_from = pct) %>%
-  mutate(diff_last_minus_first = Last - First) %>%
-  arrange(site_code, desc(abs(diff_last_minus_first)))
-
-substrate_first_last_diff
-
-substrate_first_last_diff %>%
-  ggplot(aes(x = substrate, y = diff_last_minus_first)) +
-  geom_col() +
-  facet_wrap(~ site) +
-  labs(x = "Substrate", y = "Change in cover, last minus first (%)") +
-  theme_minimal()
-
-
-# check GR5 against latest 
-gr_compare <- substrate_wide %>%
-  filter(site_code == "GR") %>%
-  mutate(transect_num = readr::parse_number(as.character(transect))) %>%
-  filter(transect == "GR5" | transect_num == max(transect_num, na.rm = TRUE)) %>%
-  mutate(period = if_else(transect == "GR5", "GR5", paste0("Most recent: ", transect))) %>%
-  select(site_code, site, transect, period, AB, HC, MAC, OB, TUR, UKN, O, SP, SC)
-
-gr_compare_long <- gr_compare %>%
-  pivot_longer(
-    cols = c(AB, HC, MAC, OB, TUR, UKN, O, SP, SC),
-    names_to = "substrate",
-    values_to = "pct"
+    substrate = factor(substrate, levels = c("TUR", "MAC", "HC")),
+    family = factor(family, levels = c("Parrotfish", "Rabbitfish", "Butterflyfish")),
+    obs_id = factor(obs_id)
   )
 
-ggplot(gr_compare_long, aes(x = period, y = pct, fill = substrate)) +
-  geom_col() +
-  labs(
-    x = NULL,
-    y = "Substrate cover (%)",
-    fill = "Substrate",
-    title = "Green Rock substrate composition: GR5 vs most recent transect"
-  ) +
-  theme_minimal()
+m_feeding_pref_main_refit <- glmmTMB(
+  cbind(bites_sub, bites_other) ~ substrate * family + avail_pct_sc + cots_mean_ha_sc +
+    (1 | obs_id),
+  family = betabinomial(link = "logit"),
+  data = feeding_pref_mod
+)
 
+m_feeding_pref_cots_sub <- glmmTMB(
+  cbind(bites_sub, bites_other) ~ substrate * family + substrate * cots_mean_ha_sc +
+    avail_pct_sc + (1 | obs_id),
+  family = betabinomial(link = "logit"),
+  data = feeding_pref_mod
+)
 
-substrate_wide %>%
-  filter(site_code == "GR") %>%
-  mutate(transect_num = readr::parse_number(as.character(transect))) %>%
-  arrange(transect_num) %>%
-  select(site, transect, HC) %>%
-  print(n = Inf)
+summary(m_feeding_pref_cots_sub)
 
-substrate_wide %>%
-  filter(site_code == "GR") %>%
-  summarise(
-    mean_HC = mean(HC, na.rm = TRUE),
-    sd_HC = sd(HC, na.rm = TRUE),
-    n_transects = n()
-  )
+anova(m_feeding_pref_main_refit, m_feeding_pref_cots_sub)
+
+AIC(m_feeding_pref_main_refit, m_feeding_pref_cots_sub)
+
+run_dharma_tests(m_feeding_pref_cots_sub, "m_feeding_pref_cots_sub")

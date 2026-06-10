@@ -168,7 +168,6 @@ write.csv(cots_survey, file.path(data_clean_dir, "cots_survey_clean.csv"), row.n
 
 
 #### 05. CLEAN SUBSTRATE ####
-#### 05. CLEAN SUBSTRATE ####
 
 valid_substrate <- c("HC", "SC", "TUR", "MAC", "SP", "OB", "AB", "AN", "UKN")
 valid_gf <- c("MA", "SMA", "CAE", "CB", "TB", "ARB", "DI", "SOL", "FOL", "LM", "ENC")

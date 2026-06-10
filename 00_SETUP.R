@@ -59,6 +59,12 @@ reef_cols <- c(
 )
 
 
+family_cols <- c(
+  "Parrotfish" = "#238b45",
+  "Rabbitfish" = "#2c7fb8",
+  "Butterflyfish" = "#6372EB"
+)
+
 
 substrate_cols_pal <- c(
   "HC"  = "#ff8c94",  # coral pink

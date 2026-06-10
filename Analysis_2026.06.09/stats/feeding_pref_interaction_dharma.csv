@@ -1,0 +1,5 @@
+model,uniformity_p,dispersion_p,outlier_p,zero_inflation_p
+m_feeding_pref_main,0.5541475412717247,0.222,0.2784168074802088,0.218
+m_feeding_pref_cots_sub,0.5824478168312863,0.196,0.7290737695139989,0.178
+m_feeding_pref_cots_family,0.45312313952640326,0.206,1,0.206
+m_feeding_pref_cots_sub_family,0.5986986856855363,0.216,1,0.226
