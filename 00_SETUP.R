@@ -1,6 +1,6 @@
 ### 00. SETUP #### 
 suppressPackageStartupMessages({
-  library(tidyverse); library(ggplot2); library(glmmTMB); library(purrr); library(broom.mixed); library(janitor)
+  library(tidyverse); library(ggplot2); library(glmmTMB); library(purrr); library(broom.mixed); library(janitor); library(DHARMa)
 })
 
 # Enter the date for this analysis
