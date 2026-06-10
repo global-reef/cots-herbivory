@@ -1,0 +1,3 @@
+"Effect","Estimate","SE","CI","p_value"
+"(Intercept)",24,3.56,"[17.1, 31]","<0.001"
+"cots_15_meanAbove_15",7.85,5.2,"[-2.34, 18.1]","0.131"

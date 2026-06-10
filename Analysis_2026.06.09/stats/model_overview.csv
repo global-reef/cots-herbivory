@@ -1,0 +1,6 @@
+model,question,response,family,n_obs,AIC,significant_fixed_effects
+m_benthos_hc,Hard coral cover differs with variation in CoTS density,HC,gaussian,42,345.2575841728283,none
+m_benthos_mac,Macroalgae cover differs with variation in CoTS density,MAC,gaussian,42,170.90123191868622,cots_mean_ha_sc (p = 0.010)
+m_benthos_tur,Turf algae cover differs with variation in CoTS density,TUR,gaussian,42,345.06631993068726,none
+m_fish_abund,Fish abundance differs by family and continuous CoTS density,fish_count,negative binomial,327,2595.468333795429,familyRabbitfish (p = 0.004); familyButterflyfish (p = 0.007); cots_mean_ha_sc (p = <0.001); familyRabbitfish:cots_mean_ha_sc (p = <0.001); familyButterflyfish:cots_mean_ha_sc (p = <0.001)
+m_fish_bites,"Fish feeding rate differs with family, CoTS density, and benthic context",bites_total,negative binomial,336,3136.6197062739016,familyRabbitfish (p = <0.001); familyButterflyfish (p = <0.001); cots_mean_ha_sc (p = 0.033); MAC_sc (p = 0.006)

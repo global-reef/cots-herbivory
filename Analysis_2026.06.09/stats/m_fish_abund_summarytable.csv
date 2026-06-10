@@ -1,0 +1,7 @@
+"Effect","Estimate","SE","CI","p_value"
+"(Intercept)",5.39,0.0851,"[5.22, 5.55]","<0.001"
+"familyRabbitfish",0.196,0.0673,"[0.0643, 0.328]","0.004"
+"familyButterflyfish",0.183,0.0678,"[0.0504, 0.316]","0.007"
+"cots_mean_ha_sc",0.268,0.0761,"[0.118, 0.417]","<0.001"
+"familyRabbitfish:cots_mean_ha_sc",-0.309,0.0667,"[-0.44, -0.178]","<0.001"
+"familyButterflyfish:cots_mean_ha_sc",-0.296,0.0669,"[-0.427, -0.165]","<0.001"
