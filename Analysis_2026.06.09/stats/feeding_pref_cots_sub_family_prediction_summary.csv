@@ -1,0 +1,10 @@
+substrate,family,pred_low_cots,pred_high_cots,change_pct_points
+TUR,Parrotfish,73,71.9,-1.1
+TUR,Rabbitfish,78,82.1,4.1
+TUR,Butterflyfish,36.3,48.8,12.5
+MAC,Parrotfish,10.7,8.1,-2.6
+MAC,Rabbitfish,13,9,-4.1
+MAC,Butterflyfish,6,3.5,-2.5
+HC,Parrotfish,8.6,3.8,-4.8
+HC,Rabbitfish,6.3,5.8,-0.6
+HC,Butterflyfish,50.6,39,-11.5
