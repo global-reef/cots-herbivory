@@ -1,4 +1,4 @@
-# 🪸 CoTS effects on grazing fish feeding behaviour  🐠
+# 🪸 CoTS indirect effects on grazing fish feeding behaviour  🐠
 
 Using long-term crown-of-thorns seastar density, benthic substrate, fish abundance, and fish feeding data to test whether high CoTS densities are associated with ecological change on reefs around Koh Tao, Thailand.  
 This repository supports a Global Reef manuscript examining links between **CoTS density**, **benthic condition**, and **grazer fish responses**.
